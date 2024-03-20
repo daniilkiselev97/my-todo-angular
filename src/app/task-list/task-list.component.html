@@ -1,0 +1,54 @@
+<div class="card-body shadow p-3 mb-5 bg-body rounded">
+    <h3 *ngIf="todoListService.tasks.length; else unset">
+      My current Tasks({{ todoListService.tasks.length }})
+      <button 
+        type="button" class="btn btn-link pl-1" 
+        (click)="filters.completed=null"
+        >All statuses</button>
+      <button 
+        type="button" class="btn btn-link pl-0"
+        (click)="filters.completed=true"
+        >Completed</button>
+      <button 
+        type="button" class="btn btn-link pl-0"
+        (click)="filters.completed=false"
+        >Uncompleted</button>
+  
+      <button 
+        type="button" class="btn btn-link ml-2"
+        (click)="filters.severity=null"
+        >All severities</button>
+      <button 
+        type="button" class="btn btn-link"
+        (click)="filters.severity='important'"
+        >Important</button>
+      <button 
+        type="button" class="btn btn-link"
+        (click)="filters.severity='usual'"
+        >Unimportant</button>
+    </h3>
+    <ng-template #unset><h3>There are no tasks yet...</h3></ng-template>
+  
+    <input
+      *ngIf="todoListService.tasks.length"
+      placeholder="search tasks"
+      type="text"
+      name="taskSearch"
+      id="taskSearch"
+      class="form-control mb-5"
+      [(ngModel)]="filters.searchText"
+    />
+  
+    <div *ngFor="let task of todoListService.tasks; let idx = index">
+      <task-item
+        *ngIf="isMatchingFilters(task)"
+        [task]="task"
+        (deleteTask)="deleteTask(idx)"
+        (completeTask)="comleteTask(idx)"
+        (changeTaskSeverity)="changeTaskSeverity(idx, $event)"
+      ></task-item>
+    </div>
+  </div>
+  
+  <task-form (createItem)="addTask($event)"></task-form>
+  

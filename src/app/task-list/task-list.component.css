@@ -1,0 +1,7 @@
+.icons {
+    column-gap: 10px;
+  }
+  .icons > svg {
+    cursor: pointer;
+  }
+  
