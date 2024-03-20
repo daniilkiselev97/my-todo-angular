@@ -1,0 +1,10 @@
+li {
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid gray;
+    border-radius: 10px;
+  }
+  .container{
+    padding-top: 15px;
+  }
+  
