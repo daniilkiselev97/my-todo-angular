@@ -1,0 +1,9 @@
+.icons-wrap {
+    justify-content: space-between;
+    border-radius: 5px;
+    background-color: rgba(232, 227, 227, 0.626);
+  }
+  .icons {
+    column-gap: 10px;
+  }
+  
