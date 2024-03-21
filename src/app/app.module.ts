@@ -15,10 +15,9 @@ import { TaskItemComponent } from './task-item/task-item.component';
     AppComponent,
     TaskFormComponent,
     TaskListComponent,
-    
     TaskItemComponent,
   ],
-  imports: [BrowserModule,  FormsModule,HttpClientModule, CommonModule],
+  imports: [BrowserModule, FormsModule, HttpClientModule, CommonModule],
   providers: [],
   bootstrap: [AppComponent],
 })

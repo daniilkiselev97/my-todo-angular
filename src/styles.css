@@ -1,1 +1,46 @@
-/* You can add global styles to this file, and also import other style files */
+li {
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid gray;
+    border-radius: 10px;
+  }
+  input::-webkit-input-placeholder {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+  }
+  input::-moz-placeholder {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+  }
+  input:-moz-placeholder {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+  }
+  input:-ms-input-placeholder {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+  }
+  input:focus::-webkit-input-placeholder {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  input:focus::-moz-placeholder {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  input:focus:-moz-placeholder {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  input:focus:-ms-input-placeholder {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  body {
+    background-color: rgba(3, 218, 150, 0.229);
+  }
+  svg {
+    cursor: pointer;
+  }
+  

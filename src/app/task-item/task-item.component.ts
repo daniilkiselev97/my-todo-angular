@@ -4,7 +4,7 @@ import { IItem } from '../services/todo-list.service';
 @Component({
   selector: 'task-item',
   templateUrl: './task-item.component.html',
-  styleUrls: ['./task-item.component.scss'],
+  styleUrls: ['./task-item.component.css'],
 })
 export class TaskItemComponent {
   @Input()
@@ -26,9 +26,7 @@ export class TaskItemComponent {
   }
 
   @Output()
-  deleteTask = new EventEmitter()
-
-
+  deleteTask = new EventEmitter();
 
   @Output()
   completeTask = new EventEmitter();

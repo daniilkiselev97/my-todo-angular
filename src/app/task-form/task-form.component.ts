@@ -4,7 +4,7 @@ import { IItem, TodoListService } from '../services/todo-list.service';
 @Component({
   selector: 'task-form',
   templateUrl: './task-form.component.html',
-  styleUrls: ['./task-form.component.scss'],
+  styleUrls: ['./task-form.component.css'],
 })
 export class TaskFormComponent {
   newTitle!: string;
