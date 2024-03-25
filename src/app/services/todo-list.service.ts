@@ -21,7 +21,7 @@ export class TodoListService {
     });
   }
   deleteTask(index: number) {
-    this.tasks.splice(index, 1);
+    this.tasks.splice(index, 1); //не мутировать
   }
   changeTaskSeverity(index: number, severity: Severity) {
     this.tasks[index].severity = severity;

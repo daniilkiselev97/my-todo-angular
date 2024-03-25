@@ -1,0 +1,5 @@
+.container-about {
+  padding: 5px;
+  display: flex;
+  column-gap: 15px;
+}

@@ -1,0 +1,31 @@
+.nav-item {
+  border: none;
+  position: relative;
+}
+
+.nav-link::after {
+  position: absolute;
+  content: "";
+  left: 0;
+  bottom: 0;
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: #e3a108c7;
+  width: 0;
+  transition: 0.3s;
+}
+.navbar {
+  padding: 20px;
+}
+
+.todo-svg {
+  margin-right: 15px;
+}
+
+.nav-link:hover:after {
+  width: 100%;
+}
+.nav-color {
+  background-color: black;
+}
