@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { IItem } from '../services/todo-list.service';
+import { IItem } from '../../../../services/todo-list.service';
 
 @Component({
   selector: 'task-item',

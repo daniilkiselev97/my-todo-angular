@@ -29,3 +29,7 @@
 .nav-color {
   background-color: black;
 }
+.current {
+  color: rgba(8, 149, 64, 0.608);
+  transition: color 0.2s ease-in;
+}

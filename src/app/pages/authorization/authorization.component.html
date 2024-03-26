@@ -7,8 +7,13 @@
       id="exampleInputEmail1"
       aria-describedby="emailHelp"
       formControlName="username"
+
     />
-    <span *ngIf="!myForm.controls.username.valid && myForm.controls.username.touched">
+    <span
+      *ngIf="
+        !myForm.controls.username.valid && myForm.controls.username.touched
+      "
+    >
       <small style="color: red">Это поле обязательно для заполнения</small>
     </span>
   </div>
@@ -28,6 +33,12 @@
       <small style="color: red">Это поле обязательно для заполнения</small>
     </span>
   </div>
+  <div class="form-group form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1" />
+    <label class="form-check-label" for="exampleCheck1">Log out</label>
+  </div>
 
-  <button  type="submit" class="btn btn-secondary" [disabled]="!myForm.valid">LOG IN</button>
+  <button (click)="handleSubmit()" type="submit" class="btn btn-secondary" [disabled]="!myForm.valid">
+    LOG IN
+  </button>
 </form>

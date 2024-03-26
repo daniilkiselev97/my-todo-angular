@@ -3,7 +3,7 @@ import {
   IItem,
   Severity,
   TodoListService,
-} from '../services/todo-list.service';
+} from '../../../../services/todo-list.service';
 
 interface IFilters {
   completed: null | boolean;
@@ -25,7 +25,6 @@ export class TaskListComponent {
 
   constructor(public todoListService: TodoListService) {}
 
- 
   showCompleted() {
     this.todoListService.tasks = this.todoListService.tasks.filter((task) => {
       return task.completed;

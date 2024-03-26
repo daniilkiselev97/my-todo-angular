@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { IItem, TodoListService } from '../services/todo-list.service';
+import { IItem, TodoListService } from '../../../../services/todo-list.service';
 
 @Component({
   selector: 'task-form',
@@ -10,7 +10,6 @@ export class TaskFormComponent {
   newTitle!: string;
   constructor() {}
 
-  @Output() 
+  @Output()
   createItem = new EventEmitter<any>();
-  
 }

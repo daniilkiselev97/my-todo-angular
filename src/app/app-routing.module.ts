@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthorizationComponent } from './authorization/authorization.component';
-import { DescriptionComponent } from './description/description.component';
-import { TodoListComponent } from './todo-list/todo-list.component';
-import { MyEmptyPageComponent } from './my-empty-page/my-empty-page.component';
+import { AuthorizationComponent } from './pages/authorization/authorization.component';
+import { DescriptionComponent } from './pages/description/description.component';
+import { TodoListComponent } from './pages/todo-list/todo-list.component';
+import { MyEmptyPageComponent } from './pages/my-empty-page/my-empty-page.component';
 
 const routes: Routes = [
   {
@@ -15,7 +15,7 @@ const routes: Routes = [
     component: DescriptionComponent,
   },
   {
-    path: 'auth',
+    path: 'login',
     component: AuthorizationComponent,
   },
   {
