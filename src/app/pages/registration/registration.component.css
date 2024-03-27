@@ -1,0 +1,11 @@
+form {
+    padding: 15px;
+    margin: 0 auto;
+    margin-top: 100px;
+    border-radius: 15px;
+    width: 500px;
+  }
+  .form-group > * + * {
+    margin-bottom: 10px;
+  }
+  

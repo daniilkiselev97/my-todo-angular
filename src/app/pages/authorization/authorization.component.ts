@@ -9,21 +9,30 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class AuthorizationComponent {
 
-  constructor(private _authService: AuthService){
-
-  }
-
-
   public myForm = new FormGroup({
-    username: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [Validators.required]),
   });
-  handleSubmit(){
-    this._authService.login({
-      email: this.myForm.controls.username.value,
-      password: this.myForm.controls.password.value
-    } as any).subscribe()
-   
+
+  constructor(private _authService: AuthService) {
+    // this.myForm.patchValue({
+    //   email: 'abc@yandex.ru',
+    //   password: 'abc'
+    // })
   }
-  
+
+  public handleSubmit(): void {
+    if (this.myForm.controls.email.value === null || this.myForm.controls.password.value === null) return;
+
+    const userLogin = {
+      email : this.myForm.controls.email.value,
+      password: this.myForm.controls.password.value
+    };
+
+    const subs = this._authService.login(userLogin).subscribe(() => {
+      subs.unsubscribe();
+    });
+  }
 }
+
+//Beh Sub хранить состояние(next|.value) и слушать это состояние 

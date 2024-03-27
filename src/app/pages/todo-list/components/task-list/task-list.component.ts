@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
 import {
-  IItem,
-  Severity,
   TodoListService,
 } from '../../../../services/todo-list.service';
+import { TodoItem, TodoItemSeverity } from 'src/app/models/todo.models';
+import { TodoFilterCompleted, TodoFilterSeverity } from 'src/app/models/todo-filter.models';
+import { TodoFilterService } from 'src/app/services/todo-filter.service';
+import { Observable, tap } from 'rxjs';
 
 interface IFilters {
   completed: null | boolean;
-  severity: null | Severity;
+  severity: null | TodoItemSeverity;
   searchText: string;
 }
 
@@ -23,33 +25,74 @@ export class TaskListComponent {
     searchText: '',
   };
 
-  constructor(public todoListService: TodoListService) {}
+  public tasksFiltered$: Observable<TodoItem[]> = this._todoFilterService.tasksFiltered$.pipe(
+    tap(console.log)
+  )
+  public tasks$: Observable<TodoItem[]> = this._todoListService.tasks$;
+
+  constructor(
+    private _todoListService: TodoListService,
+    private _todoFilterService: TodoFilterService
+  ) {
+
+
+    (window as any).todoListService = this._todoListService
+  }
+
+  setFilterCompleted(completed: TodoFilterCompleted): void {
+    this._todoFilterService.changeFilterComplete(completed);
+  }
+
+  setFilterText(text: string): void {
+    this._todoFilterService.changeFilterText(text);
+
+  }
+
+  setFilterSeverity(severity: TodoFilterSeverity) {
+    this._todoFilterService.changeFilterSeverity(severity);
+  }
 
   showCompleted() {
-    this.todoListService.tasks = this.todoListService.tasks.filter((task) => {
-      return task.completed;
-    });
+    this._todoFilterService.changeFilterComplete(true);
   }
 
   addTask(title: string) {
     if (title) {
-      this.todoListService.addTask(title);
+      const subs = this._todoListService.addTask(title).subscribe(() => {
+        subs.unsubscribe()
+      })
     }
   }
 
-  deleteTask(index: number) {
-    this.todoListService.deleteTask(index);
+  onInputFilterText(event: Event) {
+    const inputNode = event.target as (HTMLInputElement | null);
+    const filterText = inputNode?.value || '';
+    console.log(inputNode)
+    this.setFilterText(filterText);
+
   }
 
-  changeTaskSeverity(index: number, severity: Severity) {
-    this.todoListService.changeTaskSeverity(index, severity);
+  deleteTask(id: string) {
+    const subs = this._todoListService.deleteTask(id).subscribe(() => {
+      subs.unsubscribe();
+    });
   }
 
-  comleteTask(index: number) {
-    this.todoListService.completeTask(index);
+  changeTaskSeverity(id: string, severity: TodoItemSeverity) {
+    console.log(severity)
+    const subs = this._todoListService.changeTaskSeverity(id, severity).subscribe(() => {
+
+      subs.unsubscribe();
+    });
   }
 
-  isMatchingFilters(task: IItem) {
+  comleteTask(id: string, completed: boolean) {
+    const subs = this._todoListService.changeTaskCompleted(id, completed).subscribe(() => {
+      subs.unsubscribe();
+    });
+  }
+
+  isMatchingFilters(task: TodoItem) {
     const filters = this.filters;
     return (
       (filters.searchText
@@ -61,4 +104,6 @@ export class TaskListComponent {
       (filters.severity == null ? true : task.severity == filters.severity)
     );
   }
+
+  
 }

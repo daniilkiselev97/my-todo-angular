@@ -38,3 +38,11 @@ export interface UserRole {
   roleId: number;
   userId: number
 }
+
+export interface UserRegistrationData {
+  email: string;
+  password: string;
+  fio: string;
+}
+
+

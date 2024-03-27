@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { IItem } from '../../../../services/todo-list.service';
+import { TodoItem } from 'src/app/models/todo.models';
 
 @Component({
   selector: 'task-item',
@@ -7,14 +7,36 @@ import { IItem } from '../../../../services/todo-list.service';
   styleUrls: ['./task-item.component.css'],
 })
 export class TaskItemComponent {
+
+
   @Input()
-  task!: IItem;
+  task!: TodoItem;
 
   @Output()
   deleteItem = new EventEmitter();
 
   @Output()
   changeTaskSeverity = new EventEmitter();
+
+
+ 
+
+  @Output()
+  deleteTask = new EventEmitter();
+
+  @Output()
+  completeTask = new EventEmitter();
+
+  constructor(
+    // private _todoService
+  ) {
+
+  }
+
+  toggleTaskComplete() {
+    this.completeTask.emit(!this.task.completed);
+  }
+
   toggleTaskSeverity() {
     let newSeverity;
     if (this.task.severity == 'important') {
@@ -23,14 +45,5 @@ export class TaskItemComponent {
       newSeverity = 'important';
     }
     this.changeTaskSeverity.emit(newSeverity);
-  }
-
-  @Output()
-  deleteTask = new EventEmitter();
-
-  @Output()
-  completeTask = new EventEmitter();
-  toggleTaskComplete() {
-    this.completeTask.emit(!this.task.completed);
   }
 }

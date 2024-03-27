@@ -1,4 +1,4 @@
-<form [formGroup]="myForm" class="shadow p-3 mb-5 bg-body rounded">
+<form (submit)="handleSubmit()" [formGroup]="myForm" class="shadow p-3 mb-5 bg-body rounded">
   <div class="form-group">
     <label for="exampleInputEmail1">Username</label>
     <input
@@ -6,12 +6,12 @@
       class="form-control"
       id="exampleInputEmail1"
       aria-describedby="emailHelp"
-      formControlName="username"
+      [formControl]="myForm.controls.email"
 
     />
     <span
       *ngIf="
-        !myForm.controls.username.valid && myForm.controls.username.touched
+        !myForm.controls.email.valid && myForm.controls.email.touched
       "
     >
       <small style="color: red">Это поле обязательно для заполнения</small>
@@ -23,7 +23,7 @@
       type="password"
       class="form-control"
       id="exampleInputPassword1"
-      formControlName="password"
+      [formControl]="myForm.controls.password"
     />
     <span
       *ngIf="
@@ -33,12 +33,9 @@
       <small style="color: red">Это поле обязательно для заполнения</small>
     </span>
   </div>
-  <div class="form-group form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-    <label class="form-check-label" for="exampleCheck1">Log out</label>
-  </div>
+  
 
-  <button (click)="handleSubmit()" type="submit" class="btn btn-secondary" [disabled]="!myForm.valid">
+  <button type="submit" class="btn btn-secondary" [disabled]="!myForm.valid">
     LOG IN
   </button>
 </form>

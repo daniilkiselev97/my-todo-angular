@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, catchError, map, tap, throwError } from 'rxjs';
 import { environment } from '../../environments/environment';
-import { AuthToken, IsAuth, User, UserLogin } from '../models/auth.models';
+import { AuthToken, IsAuth, User, UserLogin, UserRegistrationData } from '../models/auth.models';
 import { HttpClient } from '@angular/common/http';
 import { LocalStorageService } from './local-storage.service';
 import { Route, Router } from '@angular/router';
@@ -18,10 +18,14 @@ export class AuthService {
   public readonly isAuth$: Observable<IsAuth> = this._stateAuthUser.pipe(
     map((user) => { 
       if (user === null) return { isAuth: false };
-      console.log(user)
+      // console.log(user)
       return { isAuth: true };
     })
-  )
+  );
+
+  get token(): string | null {
+    return this._localStorageService.get<string>(this._localStorageKey);
+  }
 
   constructor(
     private readonly _http: HttpClient,
@@ -33,23 +37,31 @@ export class AuthService {
   
   public login(user: UserLogin): Observable<AuthToken> {
     return this._http.post<AuthToken>(`${this._baseUrl}/login`, user).pipe(
-      catchError((err) => throwError(() => {
-        const createMessageError = (err: any) => {
-          if (Array.isArray(err.error)) return err.error.join(', ');
-          if (typeof err.error === 'object' && err.error.message) return err.error.message;
-          if (err.error instanceof ProgressEvent) return err.message;
-          return 'Непредвиденная ошибка';
-        };
-        const message = createMessageError(err);
-        console.error(err);
-        return new Error(`Ошибка при авторизации: ${message}`);
-      })),
+      catchError((err) => this.catchErrorFunc(err)),
       tap(({token}) => {
-        this._syncLogin(token, true)
-        this._router.navigateByUrl('home')
+        this._syncLogin(token, true);
+        this._router.navigateByUrl('home');
       })
     )
   }
+
+  public signup(user: UserRegistrationData): Observable<AuthToken> {
+    return this._http.post<AuthToken>(`${this._baseUrl}/registration`, user).pipe(
+      catchError((err) => this.catchErrorFunc(err)),
+      tap(({token}) => {
+        this._syncLogin(token, true);
+        this._router.navigateByUrl('home');
+      })
+    )
+  }
+
+
+  public logout(): void {
+    this._stateAuthUser.next(null);
+    this._localStorageService.delete(this._localStorageKey);
+    this._router.navigateByUrl('login');
+  }
+
 
   private _init(): void {
     const token = this._localStorageService.get(this._localStorageKey);
@@ -68,7 +80,6 @@ export class AuthService {
     }
   }
 
-
   
   //TODO : функция должна возвращать пользователя из токена или null. Ошибок при выполнении функции не должно возникать
   private _getUserFromToken(token: string)  {
@@ -84,6 +95,21 @@ export class AuthService {
         .join('')
     );
     return JSON.parse(jsonPayload);
+  }
+
+  private catchErrorFunc(err: any) {
+    return throwError(() => {
+      const createMessageError = (err: any) => {
+        if (Array.isArray(err.error)) return err.error.join(', ');
+        if (typeof err.error === 'object' && err.error.message) return err.error.message;
+        if (err.error instanceof ProgressEvent) return err.message;
+        return 'Непредвиденная ошибка';
+      };
+      const message = createMessageError(err);
+      console.error(err);
+      return new Error(`Ошибка при регистрации: ${message}`);
+    });
+
   }
 
 }
