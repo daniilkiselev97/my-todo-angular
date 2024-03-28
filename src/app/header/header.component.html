@@ -1,53 +1,44 @@
 <nav class="navbar navbar-light bg-light">
-  <img src="assets/img/logo.svg" alt="">
-
-  <!-- <button
-    class="navbar-toggler"
-    type="button"
-    data-toggle="collapse"
-    data-target="#navbarNav"
-    aria-controls="navbarNav"
-    aria-expanded="false"
-    aria-label="Toggle navigation"
-  >
-    <span class="navbar-toggler-icon"></span>
-  </button> -->
-  <!-- <div id="navbarNav"> -->
+  <img src="assets/img/logo.svg" alt="logo" class="navbar__logo" [routerLink]="['/home']" >
     <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a
-          [routerLink]="['/home']"
-          routerLinkActive="current"
-          class="nav-link"
-          >Home <span class="sr-only"></span
-        ></a>
-      </li>
-      <li class="nav-item">
-        <a
-          [routerLink]="['/about']"
-          routerLinkActive="current"
-          class="nav-link"
-          >About</a
-        >
-      </li>
+      <div class="navbar-nav_wrap">
+        <li class="nav-item active">
+          <a
+            [routerLink]="['/home']"
+            routerLinkActive="current"
+            class="nav-link"
+            >Home <span class="sr-only"></span
+          ></a>
+        </li>
+        <li class="nav-item">
+          <a
+            [routerLink]="['/about']"
+            routerLinkActive="current"
+            class="nav-link"
+            >About</a
+          >
+        </li>
+      </div>
       <ng-container *ngIf="isAuth$ | async as isAuth">
         <ng-container *ngIf="isAuth.isAuth === false">
-          <li class="nav-item">
-            <a
-              [routerLink]="['/login']"
-              routerLinkActive="current"
-              class="nav-link"
-              >Authorization</a
-            >
-          </li>
-          <li class="nav-item">
-            <a
-              [routerLink]="['/signup']"
-              routerLinkActive="current"
-              class="nav-link"
-              >Registration</a
-            >
-          </li>
+          <div class="navbar-nav_wrap">
+            <li class="nav-item">
+              <a
+                [routerLink]="['/login']"
+                routerLinkActive="current"
+                class="nav-link"
+                >Sign In</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                [routerLink]="['/signup']"
+                routerLinkActive="current"
+                class="nav-link"
+                >Sign Up</a
+              >
+            </li>
+          </div>
 
         </ng-container>
       </ng-container>
@@ -64,5 +55,4 @@
       </ng-container>
 
     </ul>
-  <!-- </div> -->
 </nav>

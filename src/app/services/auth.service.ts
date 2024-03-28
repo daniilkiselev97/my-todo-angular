@@ -80,8 +80,6 @@ export class AuthService {
     }
   }
 
-  
-  //TODO : функция должна возвращать пользователя из токена или null. Ошибок при выполнении функции не должно возникать
   private _getUserFromToken(token: string)  {
     let base64Url = token.split('.')[1];
     let base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');

@@ -67,7 +67,7 @@ export class TaskListComponent {
   onInputFilterText(event: Event) {
     const inputNode = event.target as (HTMLInputElement | null);
     const filterText = inputNode?.value || '';
-    console.log(inputNode)
+    // console.log(inputNode)
     this.setFilterText(filterText);
 
   }
@@ -79,10 +79,8 @@ export class TaskListComponent {
   }
 
   changeTaskSeverity(id: string, severity: TodoItemSeverity) {
-    console.log(severity)
     const subs = this._todoListService.changeTaskSeverity(id, severity).subscribe(() => {
-
-      subs.unsubscribe();
+    subs.unsubscribe();
     });
   }
 

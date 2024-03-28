@@ -1,5 +1,6 @@
 .container-about {
   padding: 5px;
+  padding-left: 20px;
   display: flex;
   column-gap: 15px;
 }
@@ -11,4 +12,12 @@ p {
 }
 img {
   border-radius: 10px;
+}
+
+.border-text{
+  border-radius: 7px;
+  padding: 10px;
+
+  border: 15px solid white;
+  
 }

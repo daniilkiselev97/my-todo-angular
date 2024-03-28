@@ -1,13 +1,12 @@
 <form (submit)="handleSubmit()" [formGroup]="myForm" class="shadow p-3 mb-5 bg-body rounded">
   <div class="form-group">
-    <label for="exampleInputEmail1">Username</label>
+    <label for="exampleInputEmail1">Email</label>
     <input
       type="text"
       class="form-control"
       id="exampleInputEmail1"
       aria-describedby="emailHelp"
       [formControl]="myForm.controls.email"
-
     />
     <span
       *ngIf="

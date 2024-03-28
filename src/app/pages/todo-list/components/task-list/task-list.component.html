@@ -1,7 +1,7 @@
 <ng-container *ngIf="tasks$ | async as tasks">
   <div class="card-body shadow p-3 mb-5 bg-body rounded">
     <h3 *ngIf="tasks.length; else unset">
-      My current Tasks({{ tasks.length }})
+      My Current Tasks({{ tasks.length }})
       <button
         type="button"
         class="btn btn-link pl-1"

@@ -26,9 +26,6 @@
   gap: 1rem;
 }
 
-
-
-
 .nav-link:hover:after {
   width: 100%;
 }
@@ -54,8 +51,19 @@
   flex: 1;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   gap: 1rem;
 
+}
+
+.navbar-nav_wrap{
+  display: flex;
+  gap: 10px;
+}
+
+.navbar__logo{
+  margin-left: 10px;
+  cursor: pointer;
 }
 
 

@@ -31,7 +31,7 @@ export class TodoFilterService {
   }
 
   public changeFilterSeverity(severity: TodoFilterSeverity): void {
-    console.log(severity, 'changeFilterSeverity')
+    // console.log(severity, 'changeFilterSeverity')
     this._filterState.next({
       ...this._filterState.value,
       severity
@@ -45,10 +45,6 @@ export class TodoFilterService {
     });
   }
 
-  // public destroy(): void {
-  //   this._subscription.unsubscribe(); //отписка
-  // }
-
   private _init(): void {
     combineLatest([//слушает 2 потока и если что то изменяется в одном из потоков то заново запускает subscribe
       this._todoListService.tasks$,
@@ -56,15 +52,7 @@ export class TodoFilterService {
     ]).subscribe(([tasks, filter]) => {
       this._updateSyncFilteredTasks(tasks, filter);
     })
-    // const tasksSubs = this._todoListService.tasks$.subscribe(tasks => {
-    //   this._updateSyncFilteredTasks(tasks, this._filterState.value);
-
-    // })
-    // const filterSubs = this._filterState.subscribe(filter => {
-    //   this._updateSyncFilteredTasks(this., this._filterState.value);
-
-    // })
-    // this._subscription.add(tasksSubs);
+    
   }
 
   private _filterTasks(tasks: TodoItem[], filter: TodoFilter): TodoItem[] {

@@ -1,20 +1,14 @@
 {
   "tasks": [
     {
-      "id": "b19c",
-      "title": "2",
+      "id": "eb52",
+      "title": "sss",
       "completed": true,
       "severity": "important"
     },
     {
-      "id": "6e33",
+      "id": "be7b",
       "title": "sss",
-      "completed": false,
-      "severity": "usual"
-    },
-    {
-      "id": "6cc3",
-      "title": "aa",
       "completed": false,
       "severity": "usual"
     }

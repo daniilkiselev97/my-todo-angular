@@ -68,7 +68,7 @@ export class TodoListService {
       throw new Error(`Задача ${id} не найдена `);
     }
 
-    return this._http.patch(`${this._baseUrl}/${id}`, { //частиное изменение
+    return this._http.patch(`${this._baseUrl}/${id}`, { //частичное изменение
       ...task,
       completed: completed
     }).pipe(
@@ -108,5 +108,4 @@ export class TodoListService {
       tap((tasks) => this._syncUpdateTasks(tasks))
     )
   }
-
 }

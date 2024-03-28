@@ -15,10 +15,7 @@ export class AuthorizationComponent {
   });
 
   constructor(private _authService: AuthService) {
-    // this.myForm.patchValue({
-    //   email: 'abc@yandex.ru',
-    //   password: 'abc'
-    // })
+
   }
 
   public handleSubmit(): void {

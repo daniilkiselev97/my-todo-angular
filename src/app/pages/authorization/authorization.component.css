@@ -6,5 +6,5 @@ form {
   width: 500px;
 }
 .form-group > * + * {
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
