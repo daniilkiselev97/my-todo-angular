@@ -100,7 +100,7 @@ export class TodoListService {
   }
 
   private _getAll(): Observable<TodoItem[]> {
-    return this._http.get<TodoItem[]>(this._baseUrl).pipe(
+    return this._http.get<TodoItem[]>(this._baseUrl + 'assets/').pipe(
       catchError((err) => throwError(() => {
         console.error(err);
         return new Error('Получить элементы не удалось');
